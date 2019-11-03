@@ -44,7 +44,9 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import { createNamespacedHelpers } from 'vuex';
+
+    const Users = createNamespacedHelpers('users');
 
     export default {
         methods: {
@@ -61,7 +63,9 @@
             }
         },
         computed: {
-            ...mapState(["admin"])
+            ...Users.mapState({
+                admin: 'admin',
+            }),
         },
         data: function () {
             return {
