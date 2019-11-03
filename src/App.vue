@@ -30,6 +30,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const Users = createNamespacedHelpers('users');
+
     export default {
         data: () => {
             return {
@@ -37,6 +41,9 @@
             };
         },
         methods: {
+            ...Users.mapActions({
+                setUser: 'setUser',
+            }),
             login: () => {
                 window.location.href = `${process.env.VUE_APP_API_ROOT}/auth/login`;
             }
@@ -45,8 +52,9 @@
             this.$axios.get("/user", {withCredentials: true}).then(
                 response => {
                     const data = response.data;
-                    this.$store.dispatch("setUser", data.user);
-                    this.$store.dispatch("setAdmin", data.admin);
+                    this.setUser({data});
+                    // Attention à ce genre de code, si jamais tu ecris sucessfull ou autre, tu auras une erreur
+                    // Il vaut mieux dans ces cas là se basait sur des enums
                     this.state = "successful";
                 },
                 error => {
