@@ -38,7 +38,7 @@
         },
         methods: {
             login: () => {
-                window.location.href = "http://localhost:8080/api/v1/auth/login"
+                window.location.href = `${process.env.VUE_APP_API_ROOT}/auth/login`;
             }
         },
         created() {
