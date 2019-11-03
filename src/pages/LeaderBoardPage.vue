@@ -23,6 +23,7 @@
                             v-for="(member, index) in leaderboard.slice(0, max)"
                             :key="member.name"
                     >
+                    <!-- On devrait se baser sur le member.id et non le member.name il peut potentiellement y avoir plusieurs membres avec le meme nom-->
                         <v-list-item class="mb-0">
                             <v-list-item-content>
                                 <div class="d-inline-flex">
@@ -94,7 +95,6 @@
                     withCredentials: true
                 });
                 this.leaderboard = response.data;
-                this.leaderboard.forEach(e => this.leaderboard.push(e));
                 this.state = "successful";
             } catch (e) {
                 this.state = "error";
