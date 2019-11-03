@@ -26,7 +26,7 @@
                         <v-list-item class="mb-0">
                             <v-list-item-content>
                                 <div class="d-inline-flex">
-                                    <v-avatar class="d-inline-flex pa-5" v-bind:color="getColor(index+1)" size="32">
+                                    <v-avatar class="d-inline-flex pa-5" :color="getColor(index+1)" size="32">
                                         <span class="white--text headline">{{ index + 1 }}</span>
                                     </v-avatar>
                                     <v-list-item-title class="headline mb-1 pl-3">{{ member.name }}</v-list-item-title>
@@ -42,7 +42,7 @@
                                     color="teal"
                             >
                                 <v-avatar size="48">
-                                    <img v-bind:src="member.icon" v-bind:alt="member.name"/>
+                                    <img :src="member.icon" :alt="member.name"/>
                                 </v-avatar>
                             </v-progress-circular>
                         </v-list-item>
