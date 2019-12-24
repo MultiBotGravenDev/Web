@@ -34,18 +34,24 @@
                                 </div>
                             </v-list-item-content>
 
-                            <v-progress-circular
-                                    :rotate="-90"
-                                    :size="64"
-                                    :width="15"
-                                    :value="getPercant(member.experience, member.maxExperience)"
-                                    class="mt-1"
-                                    color="teal"
-                            >
-                                <v-avatar size="48">
-                                    <img :src="member.icon" :alt="member.name"/>
-                                </v-avatar>
-                            </v-progress-circular>
+                            <v-tooltip top>
+                                <template v-slot:activator="{ on }">
+                                    <v-progress-circular
+                                            v-on="on"
+                                            :rotate="-90"
+                                            :size="64"
+                                            :width="15"
+                                            :value="getPercant(member.experience, member.maxExperience)"
+                                            class="mt-1"
+                                            color="teal"
+                                    >
+                                        <v-avatar size="48">
+                                            <img :src="member.avatarURL" :alt="member.name"/>
+                                        </v-avatar>
+                                    </v-progress-circular>
+                                </template>
+                                <span>{{ member.experience }} / {{ member.maxExperience }}</span>
+                            </v-tooltip>
                         </v-list-item>
 
                         <v-row no-gutters>
@@ -57,6 +63,9 @@
                             </v-col>
                         </v-row>
                     </v-card>
+                    <div class="my-2" @click="max += 100">
+                        <v-btn depressed large color="primary">Afficher plus</v-btn>
+                    </div>
                 </div>
             </v-content>
         </v-fade-transition>
